@@ -1,16 +1,17 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import '../App.css'
-export default function ProductList({product, addToCart}) {
-  
+import '../App.css';
+
+
+export default function ProductList({product, addToCart}) {  
   return (
     <>
       <div className='store'>
-      <h1>Welcome to the Store!</h1>
+      <h1>Welcome to the store!</h1>
       <h6>Checkout all the trends...</h6>
       </div>
-    <div className='flex'>
+      <div className='flex'>
       {
         product.map((productItem, productIndex)=> {
           
@@ -25,7 +26,6 @@ export default function ProductList({product, addToCart}) {
                     <p> ₹{productItem.price}</p>
                     </Card.Text>
                   <Button variant="secondary" onClick={()=>addToCart(productItem)}>Add to Cart</Button>
-
                 </Card.Body>
               </Card>
               </div>

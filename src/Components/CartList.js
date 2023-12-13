@@ -1,11 +1,9 @@
-// CartList.js
-
 import React, { useEffect, useState } from "react";
 import { Trash } from "react-bootstrap-icons";
 import Button from 'react-bootstrap/Button';
 import CheckoutModal from "./CheckoutModal";
+import toast from "react-hot-toast";
 import '../App.css'
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function CartList({ cart, setCartlist }) {
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
@@ -14,7 +12,7 @@ export default function CartList({ cart, setCartlist }) {
   const removeItemFromCart = (cartIndex) => {
     const updatedCart = CART.filter((item, index) => index !== cartIndex);
     setCartlist(updatedCart);
-    // You may want to add a toast message here as well
+    toast.success('Item Removed');
   };
 
   useEffect(() => {

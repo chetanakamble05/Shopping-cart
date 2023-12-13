@@ -1,8 +1,16 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { Cart } from 'react-bootstrap-icons'
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Cart } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+
+
 export default function Header(props) {
+  const router = useNavigate();
+  function handleLogout() {
+    router('/');
+    toast.success("Logout Successfully")
+  }
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -11,14 +19,9 @@ export default function Header(props) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-            <Link to="/register" className="nav-link">
-              Register
-            </Link>
+          <Nav className="me-auto">    
           </Nav>
+          <Button variant="light" onClick={handleLogout} style={{marginRight: '10px'}}>Logout</Button>
           <Nav>
             <div
               className="nav-link"
@@ -32,3 +35,4 @@ export default function Header(props) {
     </Navbar>
   );
 }
+

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Form, Button, Card} from 'react-bootstrap';
 import '../App.css';
 
 const Login = () => {
@@ -35,7 +35,7 @@ const Login = () => {
       if (user) {
         if (user.password === formData.password) {
           toast.success("Login successful");
-          navigate("/");
+          navigate("/home");
         } else {
           toast.error("Wrong password");
         }
@@ -53,14 +53,19 @@ const Login = () => {
 
     if (!formData.email || formData.email.trim() === "") {
       isValid = false;
-      validationErrors.email = "Email is required";
+      validationErrors.email =  toast.error("Email is required");
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      isValid = false;
+      validationErrors.email = toast.error("Invalid email address");
     }
+
+
     if (!formData.password || formData.password.trim() === "") {
       isValid = false;
-      validationErrors.password = "Password is required";
+      validationErrors.password =  toast.error("Password is required");
     } else if (formData.password.length < 8) {
       isValid = false;
-      validationErrors.password = "Password should be at least 8 characters";
+      validationErrors.password =  toast.error("Password should be at least 8 characters");
     }
 
     setErrors(validationErrors);
@@ -86,13 +91,12 @@ const Login = () => {
                 <Form.Group controlId="formEmail">
                   <Form.Label className="d-flex">Email:</Form.Label>
                   <Form.Control
-                    type="email"
+                    type="text"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email"
                   />
-                  {errors.email && <Alert variant="danger">{errors.email}</Alert>}
                 </Form.Group>
                 <br/>
                 <Form.Group controlId="formPassword">
@@ -104,13 +108,11 @@ const Login = () => {
                     onChange={handleChange}
                     placeholder="Enter your password"
                   />
-                  {errors.password && <Alert variant="danger">{errors.password}</Alert>}
                 </Form.Group>
                 <br/>
                 <div className="inputBox">
                   <Button variant="secondary" type="submit" style={{ width: "100%" }}>Login</Button>
                 </div>
-
                 <div className="links">
                   <p className="p-2">
                     Don't have an account?{" "}

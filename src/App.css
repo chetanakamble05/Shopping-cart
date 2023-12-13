@@ -33,56 +33,6 @@
   width: 40px;
 }
 
-/* .viewcart{
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  margin-left: 150px;
-  border-bottom-style: groove;
-  border-spacing: 30px;
-  border-radius: 10px;
-  margin-right: 150px;
-
-} */
-
-/* .des{
-  margin-left: 50px;
-}
-
-.btn1{
-  margin-left: 50px;
-}
-
-.quantity{
-  margin-left: 10px;
-}
-
-.btn2{
-  margin-left: 10px;
-}
-
-.price{
-  margin-left: 50px;
-}
-
-.tprice{
-  margin-left: 50px;
-}
-
-.tcprice{
-  margin-left: 150px;
-  margin-top: 20px;
-}
-
-.remove{
-  margin-left: 50px;
-} */
-
-/* .check{
-  margin-left: 20px;
-
-} */
-
 .store{
   margin-top: 20px;
   text-align: center;
@@ -107,7 +57,7 @@
   background-color: #e2e3e5;
 }
 
-/* CartList.css */
+
 
 .cart-container {
   display: flex;
@@ -120,7 +70,7 @@
   border-collapse: collapse;
   width: 80%;
   margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to the table */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .cart-table th, .cart-table td {
@@ -153,23 +103,19 @@
   position: absolute;
   margin-left:550px;
   margin-top: 100px;
+}
 
+.checkout-modal{
+  text-align: center;
 }
 
 
-
-
-
-
-
-
-/* Add this style to your existing CSS file or create a new one */
 .checkout-modal {
   margin-top: 20px;
 }
 
 .custom-table {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to the table */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   width: 100%;
 }
 
@@ -179,18 +125,6 @@
   text-align: center;
 }
 
-/* .custom-table th {
-  background-color: #343a40;
-  color: #fff;
-} */
-
-/* .custom-table tbody tr:hover {
-  background-color: #f5f5f5;
-}
-
-.table-info {
-  background-color: #cce5ff;
-} */
 
 .custom-table td, .custom-table th {
   border: 1px solid #dee2e6;

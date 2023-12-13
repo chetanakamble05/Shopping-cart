@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
+import toast from 'react-hot-toast'
 import '../App.css';
 
 const Register = () => {
@@ -31,33 +32,37 @@ const Register = () => {
 
     if (formData.firstName.trim() === "") {
       isValid = false;
-      validationErrors.firstName = "First name is required";
+      validationErrors.firstName =  toast.error("Name is required");
     }
-
+    
     if (formData.email.trim() === "") {
       isValid = false;
-      validationErrors.email = "Email is required";
+      validationErrors.email =  toast.error("Email is required");
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      isValid = false;
+      validationErrors.email = toast.error("Invalid email address");
     }
+
 
     if (formData.password.trim() === "") {
       isValid = false;
-      validationErrors.password = "Password is required";
+      validationErrors.password =  toast.error("Password is required");
     } else if (formData.password.length < 8) {
       isValid = false;
-      validationErrors.password = "Password length should be at least 8 characters";
+      validationErrors.password =  toast.error("Password length should be at least 8 characters");
     }
 
     if (formData.confirmPassword !== formData.password) {
       isValid = false;
-      validationErrors.confirmPassword = "Passwords do not match";
+      validationErrors.confirmPassword =  toast.error("Passwords do not match");
     }
 
     setErrors(validationErrors);
     setValid(isValid);
 
     if (Object.keys(validationErrors).length === 0) {
-      alert("Registration successful");
-      navigate("/login");
+      toast.success("Registration successful");
+      navigate("/");
       axios.post("http://localhost:3000/users", formData)
         .then(console.log(formData))
         .catch((err) => console.log(err, "Error while posting"));
@@ -86,22 +91,19 @@ const Register = () => {
                     onChange={handleChange}
                     placeholder="Enter your name"
                   />
-                  {errors.firstName && <Alert variant="danger">{errors.firstName}</Alert>}
                 </Form.Group>
                 <br/>
                 <Form.Group controlId="formEmail">
                   <Form.Label className="d-flex">Email:</Form.Label>
                   <Form.Control
-                    type="email"
+                    type="text"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email"
                   />
-                  {errors.email && <Alert variant="danger">{errors.email}</Alert>}
                 </Form.Group>
                 <br/>
-
                 <Form.Group controlId="formPassword">
                   <Form.Label className=" d-flex">Password:</Form.Label>
                   <Form.Control
@@ -111,7 +113,6 @@ const Register = () => {
                     onChange={handleChange}
                     placeholder="Enter your password"
                   />
-                  {errors.password && <Alert variant="danger">{errors.password}</Alert>}
                 </Form.Group>
                 <br/>
 
@@ -124,7 +125,6 @@ const Register = () => {
                     onChange={handleChange}
                     placeholder="Confirm your password"
                   />
-                  {errors.confirmPassword && <Alert variant="danger">{errors.confirmPassword}</Alert>}
                 </Form.Group>
                 <br/>
 
@@ -135,7 +135,7 @@ const Register = () => {
                 <span
                   className="LoginNav"
                   onClick={() => {
-                    navigate("/login");
+                    navigate("/");
                   }}
                   style={{ color: "blue" }}
                 >

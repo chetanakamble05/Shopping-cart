@@ -1,11 +1,12 @@
 import React from 'react';
 import { Table, Button, Container } from 'react-bootstrap';
 
+
 export default function CheckoutModal({ cart, onClose }) {
   if (!Array.isArray(cart) || cart.length === 0) {
     return (
       <div className="checkout-modal">
-        <h2>Checkout</h2>
+        <h2>Checkout Summary</h2>
         <p>No items in the cart.</p>
         <Button variant="secondary" onClick={onClose}>
           Close
@@ -53,12 +54,10 @@ export default function CheckoutModal({ cart, onClose }) {
           Close
         </Button>
       </div>
-      {/* Add additional functionality for checkout, e.g., payment processing */}
     </Container>
   );
 
   function handleProceedToPayment() {
-    // Add logic for proceeding to payment
     console.log('Proceeding to payment...');
   }
 }
